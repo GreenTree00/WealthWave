@@ -1,0 +1,5 @@
+1. Fully Setup Add Income Components
+
+2. Fully Setup DeductIncome Components
+
+3.Add charts using https://recharts.org/en-US/api/Pie
