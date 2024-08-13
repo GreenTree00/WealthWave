@@ -1,0 +1,29 @@
+.addData {
+    color: #00D1FF;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+.header {
+    color: #00D1FF;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.footer {
+    color: #00D1FF;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+.body {
+    background-color: #212224;
+    height: 100vh;
+}
+.addIncome {
+background-color: aliceblue;
+}
+.addExpense {
+    background-color: aliceblue;
+}

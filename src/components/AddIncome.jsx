@@ -1,14 +1,12 @@
 import React from "react";
 
-
-
 function AddIncome () {
 
 
     
 
     return (
-        <div>
+        <div className="addIncome">
             <p>Add Income</p>
                 <form>
                 <label for="Income">Which Month of Income:</label>
@@ -42,12 +40,14 @@ function AddIncome () {
                 <option value="2031">2031</option>
                 </select>
                 <br />
-                <label for="jobIncome">Job Income:</label><br />
-                <input type="text" id="jobIncome" name="jobIncome" /><br />
+                <label for="totalincome">Total Income:</label><br />
+                <input type="text" id="totalincome" name="totalincome" /><br />
                 <label for="sideHustleIncome">Side Hustle Income:</label><br />
                 <input type="text" id="sideHustleIncome" name="sideHustleIncome"></input><br />
                 <label for="stockIncome">Stock Income:</label><br />
-                <input type="text" id="stockIncome" name="stockIncome"></input>
+                <input type="text" id="stockIncome" name="stockIncome"></input><br />
+                <label for="other">Other:</label><br />
+                <input type="text" id="other" name="other"></input><br />
                 <br />
                 <input type="submit" />
                 </form>

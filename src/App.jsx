@@ -9,12 +9,14 @@ function App() {
  
 
   return (
-    <>
+    <div className="body">
     <Header />
+    <div className="addData">
     <AddIncome />
     <DeductIncome />
+    </div>
     <Footer />
-    </>
+    </div>
   )
 }
 

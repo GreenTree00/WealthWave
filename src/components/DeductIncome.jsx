@@ -2,7 +2,7 @@ import React from "react";
 
 function DeductIncome () {
     return (
-        <div>
+        <div className="addExpense">
             <p>Add Expense</p>
             <form>
                 <label for="month">Which Month of Expense:</label>
@@ -36,12 +36,18 @@ function DeductIncome () {
                 <option value="2031">2031</option>
                 </select>
                 <br />
-                <label for="jobIncome">Expense:</label><br />
-                <input type="text" id="jobIncome" name="jobIncome" /><br />
-                <label for="sideHustleIncome">Side Hustle Income:</label><br />
-                <input type="text" id="sideHustleIncome" name="sideHustleIncome"></input><br />
-                <label for="stockIncome">Stock Income:</label><br />
-                <input type="text" id="stockIncome" name="stockIncome"></input>
+                <label for="totalExpense">Total Expense:</label><br />
+                <input type="text" id="totalExpense" name="totalExpense" /><br />
+                <label for="housing">Housing:</label><br />
+                <input type="text" id="housing" name="housing"></input><br />
+                <label for="food">Food:</label><br />
+                <input type="text" id="food" name="food"></input><br />
+                <label for="transportation">Transportation:</label><br />
+                <input type="text" id="transportation" name="transportation"></input><br />
+                <label for="insurance">Insurance:</label><br />
+                <input type="text" id="insurance" name="insurance"></input><br />
+                <label for="other">Other:</label><br />
+                <input type="text" id="other" name="other"></input><br />
                 <br />
                 <input type="submit" />
                 </form>
