@@ -16,7 +16,22 @@ const [formData, setFormData] = useState({
 
     const handleClick = async (event) => {
         event.preventDefault()
-        console.log(formData);
+        try {
+              await fetch("http://localhost:3000/api/data/income", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                  }
+              });
+            
+        } catch (err) {
+            console.log("An Error has ocurred", err);
+        }
+        
+        //setFormData({     Once i know if this works set this so the state is reset
+        //    date: "", totalincome: "", sidehustleincome: "", stockincome: "", other: ""
+        //});
     }
 
     return (

@@ -16,7 +16,18 @@ function DeductIncome () {
         
             const handleClick = async (event) => {
                 event.preventDefault()
-                console.log(formData);
+                try {
+                    await fetch("http://localhost:3000/api/data/expense", {
+                      method: "POST",
+                      body: JSON.stringify(formData),
+                      headers: {
+                          "Content-Type": "application/json",
+                        }
+                    });
+                  
+              } catch (err) {
+                  console.log("An Error has ocurred", err);
+              }
             }
 
     return (
