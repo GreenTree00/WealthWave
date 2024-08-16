@@ -58,46 +58,53 @@ const [formData, setFormData] = useState({
              event.preventDefault()
              if (formData.type == "Income") {
                 try {
-                    await fetch("http://localhost:3000/api/data/income/period", {   
-                      method: "POST",
-                      body: JSON.stringify(formData),
-                      headers: {
-                          "Content-Type": "application/json",
-                        }
+                    const response = await fetch("http://localhost:3000/api/data/income/period", {     
+                        method: "POST",
+                        body: JSON.stringify(formData),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
                     });
-                    
-              } catch (err) {
-                  console.log("There was a problem with the fetch operation:", error);
-              }
+                    const data = await response.json();
+                    console.log(data[0].total_income);          //console.logs the data for total income
+                    } catch (error) {
+                    console.error('Error:', error);
+                }
              } else if (formData.type == "Expense") {
-             try {
-                 await fetch("http://localhost:3000/api/data/expense/period", {     
-                   method: "POST",
-                   body: JSON.stringify(formData),
-                   headers: {
-                       "Content-Type": "application/json",
-                     }
-                 });
-                 
-           } catch (err) {
-               console.log("There was a problem with the fetch operation:", error);
-           }
-         } else if (formData.type == "Both Income & Expense") {
-            await fetch("http://localhost:3000/api/data/income-expense/period", {  
+           try {
+            const response = await fetch("http://localhost:3000/api/data/expense/period", {     
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {
                     "Content-Type": "application/json",
-                  }
-              });
-         }
-        } 
+                },
+            });
+            const data = await response.json();
+            console.log(data[0].total_expense);                         // console.logs the data for total expense
+            } catch (error) {
+            console.error('Error:', error);
+        }} else if (formData.type == "Both Income & Expense") {
+            try {
+                const response = await fetch("http://localhost:3000/api/data/income-expense/period", {     
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                const data = await response.json();
+                console.log(data.resInc[0].total_income, data.resExp[0].total_expense);     // console.logs the data for total income and expense
+                } catch (error) {
+                console.error('Error:', error);
+            }};
+        }
 
   return (
     <>
     <form>
     <label for="type">Which data do you want to see?:</label>
     <select id="type" name="type" value={formData.type} onChange={handleChange}>
+    <option value="blank"></option>
     <option value="Income">Income</option>
     <option value="Expense">Expense</option>
     <option value="Both Income & Expense">Both Income & Expense</option>
