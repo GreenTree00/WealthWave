@@ -24,14 +24,12 @@ const [formData, setFormData] = useState({
                     "Content-Type": "application/json",
                   }
               });
-            
+              
         } catch (err) {
             console.log("An Error has ocurred", err);
         }
         
-        //setFormData({     Once i know if this works set this so the state is reset
-        //    date: "", totalincome: "", sidehustleincome: "", stockincome: "", other: ""
-        //});
+        
     }
 
     return (

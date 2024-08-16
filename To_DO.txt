@@ -2,11 +2,10 @@
 -Create api/backend so income can be saved into the database
 
 2. Fully Setup DeductIncome Components
+-Create api/backend so expenses can be saved into the database
 
 3.Add charts using https://recharts.org/en-US/api/Pie
 
 4. Functionality.
--Add Income to backend and have it saved
--Add Expenses to backend and have it saved
 -Sort your current view by income or Expenses or both
 -Have your current data used to create a pie chart to show you a 1 month view of your money with expenses and income

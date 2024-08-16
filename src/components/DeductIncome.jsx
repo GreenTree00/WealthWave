@@ -24,7 +24,7 @@ function DeductIncome () {
                           "Content-Type": "application/json",
                         }
                     });
-                  
+                    
               } catch (err) {
                   console.log("An Error has ocurred", err);
               }
