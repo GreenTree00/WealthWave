@@ -7,9 +7,11 @@ const [formData, setFormData] = useState({
     type: "", firstdate: "", seconddate: ""
  })
 
-useEffect( async () => {    // This will be used to fetch data to dispay a pie chart of this months data when pages is loaded
-  await fetch("http://localhost:3000/api/data");
-}, []);
+/*useEffect( async () => {    // This will be used to fetch data to dispay a pie chart of this months data when pages is loaded
+  await fetch(`${import.meta.env.VITE_API_URL}/data`);
+  const newData = await response.json();
+  console.log(newData);
+}, [formData]);*/
 
     const data = [
         { name: "Income", value: 100 },
@@ -62,7 +64,7 @@ useEffect( async () => {    // This will be used to fetch data to dispay a pie c
              event.preventDefault()
              if (formData.type == "Income") {
                 try {
-                    const response = await fetch("http://localhost:3000/api/data/income/period", {     
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period`, {     
                         method: "POST",
                         body: JSON.stringify(formData),
                         headers: {
@@ -76,7 +78,7 @@ useEffect( async () => {    // This will be used to fetch data to dispay a pie c
                 }
              } else if (formData.type == "Expense") {
            try {
-            const response = await fetch("http://localhost:3000/api/data/expense/period", {     
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period`, {     
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {
@@ -89,7 +91,7 @@ useEffect( async () => {    // This will be used to fetch data to dispay a pie c
             console.error('Error:', error);
         }} else if (formData.type == "Both Income & Expense") {
             try {
-                const response = await fetch("http://localhost:3000/api/data/income-expense/period", {     
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period`, {     
                     method: "POST",
                     body: JSON.stringify(formData),
                     headers: {

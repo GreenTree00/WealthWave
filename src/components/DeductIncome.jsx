@@ -4,7 +4,8 @@ function DeductIncome () {
 
         const [formData, setFormData] = useState({
            date: "", totalexpense: "", housing: "", food: "", transportation: "", insurance: "", other: ""
-        })
+        });
+        
             
             const handleChange = (event) => {
                 const {name, value} = event.target;
@@ -17,7 +18,7 @@ function DeductIncome () {
             const handleClick = async (event) => {
                 event.preventDefault()
                 try {
-                    await fetch("http://localhost:3000/api/data/expense", {
+                    await fetch(`${import.meta.env.VITE_API_URL}/data/expense`, {
                       method: "POST",
                       body: JSON.stringify(formData),
                       headers: {
@@ -28,6 +29,7 @@ function DeductIncome () {
               } catch (err) {
                   console.log("An Error has ocurred", err);
               }
+              setFormData("");
             }
 
     return (
