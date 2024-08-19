@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
 function PieGraph () {
@@ -6,6 +6,10 @@ function PieGraph () {
 const [formData, setFormData] = useState({
     type: "", firstdate: "", seconddate: ""
  })
+
+useEffect( async () => {    // This will be used to fetch data to dispay a pie chart of this months data when pages is loaded
+  await fetch("http://localhost:3000/api/data");
+}, []);
 
     const data = [
         { name: "Income", value: 100 },
@@ -99,7 +103,7 @@ const [formData, setFormData] = useState({
             }};
         }
 
-  return (
+  return (    
     <>
     <form>
     <label for="type">Which data do you want to see?:</label>
