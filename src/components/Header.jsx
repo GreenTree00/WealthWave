@@ -2,10 +2,12 @@ import React from 'react'
 
 function Header () {
     return (
-    <div className="header">
-      <h1>WealthWave</h1>
-      <p>Your Personal Finance Tracker</p>
-    </div>
+      <section className="hero">
+      <div className="hero-body">
+        <p className="title">WealthWave</p>
+        <p className="subtitle">Your Personal Finance Tracker</p>
+      </div>
+    </section>
     )
 }
 

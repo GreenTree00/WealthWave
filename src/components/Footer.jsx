@@ -2,9 +2,11 @@ import React from 'react'
 
 function Footer () {
     return (
-    <div className="footer">
-        Copyright © {new Date().getFullYear()}
+    <footer className="footer">
+    <div className="content has-text-centered">
+      <p>Copyright © {new Date().getFullYear()}</p>
     </div>
+  </footer>
     )
 }
 

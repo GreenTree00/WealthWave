@@ -33,22 +33,40 @@ const [formData, setFormData] = useState({
     }
 
     return (
-        <div className="addIncome">
+        <div>
             <p>Add Income</p>
-            <form>
-                <label for="birthday">Date:</label>
-                <input type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
-                <br />
-                <label for="totalincome">Total Income:</label><br />
-                <input type="text" id="totalincome" name="totalincome" value={formData.totalincome} onChange={handleChange}/><br />
-                <label for="sidehustleincome">Side Hustle Income:</label><br />
-                <input type="text" id="sidehustleincome" name="sidehustleincome" value={formData.sidehustleincome} onChange={handleChange}></input><br />
-                <label for="stockincome">Stock Income:</label><br />
-                <input type="text" id="stockincome" name="stockincome" value={formData.stockincome} onChange={handleChange}></input><br />
-                <label for="other">Other:</label><br />
-                <input type="text" id="other" name="other" value={formData.other} onChange={handleChange}></input ><br />
-                <br />
-                <input type="submit" onClick={handleClick}/>
+            <form className="box">
+                <div className="field">
+                <label className="label" for="date">Date:</label>
+                <div className="control">
+                <input className="input" type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
+                </div>
+                </div>
+                <div className="field">
+                <label className="label" for="totalincome">Total Income:</label><br />
+                <div className="control">
+                <input className="input" type="text" id="totalincome" name="totalincome" value={formData.totalincome} onChange={handleChange}/><br />
+                </div>
+                </div>
+                <div className="field">
+                <label className="label" for="sidehustleincome">Side Hustle Income:</label><br />
+                <div className="control">
+                <input className="input" type="text" id="sidehustleincome" name="sidehustleincome" value={formData.sidehustleincome} onChange={handleChange}></input><br />
+                </div>
+                </div>
+                <div className="field">
+                <label className="label" for="stockincome">Stock Income:</label><br />
+                <div className="control">
+                <input className="input" type="text" id="stockincome" name="stockincome" value={formData.stockincome} onChange={handleChange}></input><br />
+                </div>
+                </div>
+                <div className="field">
+                <label className="label" for="other">Other:</label><br />
+                <div className="control">
+                <input className="input" type="text" id="other" name="other" value={formData.other} onChange={handleChange}></input ><br />
+                </div>
+                </div>
+                <input className="button is-primary" type="submit" onClick={handleClick}/>
                 </form>
         </div>
     )
