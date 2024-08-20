@@ -13,9 +13,11 @@ function App() {
     <div className="body">
     <Header />
     <div className="addData">
-    <PieGraph />
-    <AddIncome />
-    <DeductIncome />
+    <div class="grid">
+      <PieGraph class="cell" />
+      <AddIncome class="cell" />
+      <DeductIncome class="cell" />
+    </div>
     </div>
     <Footer />
     </div>
