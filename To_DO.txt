@@ -1,8 +1,8 @@
-1. Fully Setup Add Income Components
--Create api/backend so income can be saved into the database
+1. Break the app down into 4 squares that all have different functionality. Each square when pressed will open up its functionality and the other squares will be minimised
 
-2. Fully Setup DeductIncome Components
--Create api/backend so expenses can be saved into the database
+
+2. 
+
 
 3.Add charts using https://recharts.org/en-US/api/Pie
 
