@@ -26,6 +26,7 @@ function PieGraphDateFilter () {
                        "Content-Type": "application/json",
                    },
                });
+               setFormData({type: "", firstdate: "", seconddate: ""});
                const data = await response.json();
                console.log(data[0].total_income);          //console.logs the data for total income
                } catch (error) {

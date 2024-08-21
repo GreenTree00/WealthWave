@@ -25,11 +25,12 @@ function DeductIncome () {
                           "Content-Type": "application/json",
                         }
                     });
-                    
+                    setFormData({
+                        date: "", totalexpense: "", housing: "", food: "", transportation: "", insurance: "", other: ""
+                 });
               } catch (err) {
                   console.log("An Error has ocurred", err);
               }
-              setFormData("");
             }
 
     return (

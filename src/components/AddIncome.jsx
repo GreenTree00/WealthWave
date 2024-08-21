@@ -24,7 +24,9 @@ const [formData, setFormData] = useState({
                     "Content-Type": "application/json",
                   }
               });
-                
+              setFormData({
+                date: "", totalincome: "", sidehustleincome: "", stockincome: "", other: ""
+            });  
         } catch (err) {
             console.log("An Error has ocurred", err);
         }
