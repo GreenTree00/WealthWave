@@ -31,6 +31,7 @@ function PieGraphDateFilter () {
                console.log(data[0].total_income);          //console.logs the data for total income
                } catch (error) {
                console.error('Error:', error);
+               alert("There was a problem adding this data. Please try again later");
            }
         } else if (formData.type == "Expense") {
       try {
@@ -45,6 +46,7 @@ function PieGraphDateFilter () {
        console.log(data[0].total_expense);                         // console.logs the data for total expense
        } catch (error) {
        console.error('Error:', error);
+       alert("There was a problem adding this data. Please try again later");
    }} else if (formData.type == "Both Income & Expense") {
        try {
            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period`, {     
@@ -58,6 +60,7 @@ function PieGraphDateFilter () {
            console.log(data.resInc[0].total_income, data.resExp[0].total_expense);     // console.logs the data for total income and expense
            } catch (error) {
            console.error('Error:', error);
+           alert("There was a problem adding this data. Please try again later");
        }};
    }
 

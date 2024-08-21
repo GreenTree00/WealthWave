@@ -30,6 +30,7 @@ function DeductIncome () {
                  });
               } catch (err) {
                   console.log("An Error has ocurred", err);
+                  alert("There was a problem adding this data. Please try again later");
               }
             }
 
