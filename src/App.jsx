@@ -11,7 +11,8 @@ function App() {
  
 
   return (
-    <div className="body">
+    <>
+    <div class="container is-fluid">
     <Header />
     <div className="addData">
     <div class="grid">
@@ -21,8 +22,9 @@ function App() {
       <DeductIncome class="cell" />
     </div>
     </div>
-    <Footer />
     </div>
+    <Footer />
+    </>
   )
 }
 
