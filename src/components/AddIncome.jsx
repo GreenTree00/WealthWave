@@ -26,10 +26,10 @@ const [formData, setFormData] = useState({
               });
               setFormData({
                 date: "", totalincome: "", sidehustleincome: "", stockincome: "", other: ""
-            });  
+            });
         } catch (err) {
-            console.log("An Error has ocurred", err);
-            alert("There was a problem adding this data. Please try again later");
+            console.log(err);
+            alert("There was an error connecting to the server. Please try again later")
         }
         
         
