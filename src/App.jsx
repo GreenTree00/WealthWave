@@ -12,14 +12,14 @@ function App() {
 
   return (
     <>
-    <div class="container is-fluid">
+    <div className="container is-fluid">
     <Header />
     <div className="addData">
-    <div class="grid">
-      <PieGraphDateFilter class="cell"/>
-      <PieGraph class="cell" />
-      <AddIncome class="cell" />
-      <DeductIncome class="cell" />
+    <div className="grid">
+      <PieGraphDateFilter className="cell"/>
+      <PieGraph className="cell" />
+      <AddIncome className="cell" />
+      <DeductIncome className="cell" />
     </div>
     </div>
     </div>
