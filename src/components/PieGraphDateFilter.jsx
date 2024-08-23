@@ -66,7 +66,7 @@ function PieGraphDateFilter () {
 
     return (
     <form className="box">
-    <label for="type">Which data do you want to see?:</label>
+    <label for="type">Which data do you want to see:</label>
     <div class="select">
     <select id="type" name="type" value={formData.type} onChange={handleChange}>
     <option value="blank"></option>
@@ -87,7 +87,7 @@ function PieGraphDateFilter () {
     <input className="input" type="date" id="seconddate" name="seconddate" value={formData.seconddate} onChange={handleChange}/>
     </div>
     </div>
-    <input type="submit" onClick={handleClick}/>
+    <input className="button is-primary" type="submit" onClick={handleClick}/>
     </form>
     )
 }
