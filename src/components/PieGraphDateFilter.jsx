@@ -42,6 +42,7 @@ function PieGraphDateFilter () {
                "Content-Type": "application/json",
            },
        });
+       setFormData({type: "", firstdate: "", seconddate: ""});
        const data = await response.json();
        console.log(data[0].total_expense);                         // console.logs the data for total expense
        } catch (error) {
@@ -56,8 +57,10 @@ function PieGraphDateFilter () {
                    "Content-Type": "application/json",
                },
            });
+           setFormData({type: "", firstdate: "", seconddate: ""});
            const data = await response.json();
-           console.log(data.resInc[0].total_income, data.resExp[0].total_expense);     // console.logs the data for total income and expense
+           console.log(data);
+           //console.log(data.resInc[0].total_income, data.resExp[0].total_expense);     // console.logs the data for total income and expense
            } catch (error) {
            console.error('Error:', error);
            alert("There was a problem adding this data. Please try again later");
