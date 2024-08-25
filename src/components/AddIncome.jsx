@@ -3,7 +3,7 @@ import React, {useState} from "react";
 function AddIncome () {
 
 const [formData, setFormData] = useState({
-    date: "", totalincome: "", sidehustleincome: "", stockincome: "", other: ""
+    date: "", jobincome: "", sidehustleincome: "", stockincome: "", other: "", totalincome: ""
 })
     
     const handleChange = (event) => {
@@ -25,7 +25,7 @@ const [formData, setFormData] = useState({
                   }
               });
               setFormData({
-                date: "", totalincome: "", sidehustleincome: "", stockincome: "", other: ""
+                date: "", jobincome: "", sidehustleincome: "", stockincome: "", other: "", totalincome: ""
             });
         } catch (err) {
             console.log(err);
@@ -46,9 +46,9 @@ const [formData, setFormData] = useState({
                 </div>
                 </div>
                 <div className="field">
-                <label className="label" for="totalincome">Total Income:</label><br />
+                <label className="label" for="jobincome">Job Income:</label><br />
                 <div className="control">
-                <input className="input" type="text" id="totalincome" name="totalincome" value={formData.totalincome} onChange={handleChange}/><br />
+                <input className="input" type="text" id="jobincome" name="jobincome" value={formData.jobincome} onChange={handleChange}></input><br />
                 </div>
                 </div>
                 <div className="field">
@@ -67,6 +67,12 @@ const [formData, setFormData] = useState({
                 <label className="label" for="other">Other:</label><br />
                 <div className="control">
                 <input className="input" type="text" id="other" name="other" value={formData.other} onChange={handleChange}></input ><br />
+                </div>
+                </div>
+                <div className="field">
+                <label className="label" for="totalincome">Total Income:</label><br />
+                <div className="control">
+                <input className="input" type="text" id="totalincome" name="totalincome" value={formData.totalincome} onChange={handleChange}/><br />
                 </div>
                 </div>
                 <input className="button is-primary" type="submit" onClick={handleClick}/>
