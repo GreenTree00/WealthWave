@@ -3,7 +3,7 @@ import React, {useState} from "react";
 function DeductIncome () {
 
         const [formData, setFormData] = useState({
-           date: "", totalexpense: "", housing: "", food: "", transportation: "", insurance: "", other: ""
+           date: "", housing: "", food: "", transportation: "", insurance: "", entertainment: "", other: "", totalexpense: ""
         });
         
             
@@ -26,7 +26,7 @@ function DeductIncome () {
                         }
                     });
                     setFormData({
-                        date: "", totalexpense: "", housing: "", food: "", transportation: "", insurance: "", other: ""
+                        date: "", housing: "", food: "", transportation: "", insurance: "", entertainment: "", other: "", totalexpense: ""
                  });
               } catch (err) {
                   console.log("An Error has ocurred", err);
@@ -42,12 +42,6 @@ function DeductIncome () {
                 <label className="label" for="birthday">Date:</label>
                 <div className="control">
                 <input className="input" type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="totalexpense">Total Expense:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="totalexpensee" name="totalexpense" value={formData.totalexpense} onChange={handleChange}/><br />
                 </div>
                 </div>
                 <div className="field">
@@ -75,9 +69,21 @@ function DeductIncome () {
                 </div>
                 </div>
                 <div className="field">
+                <label className="label" for="entertainment">Entertainment:</label><br />
+                <div className="control">
+                <input className="input" type="text" id="entertainment" name="entertainment" value={formData.entertainment} onChange={handleChange}/><br />
+                </div>
+                </div>
+                <div className="field">
                 <label className="label" for="other">Other:</label><br />
                 <div className="control">
                 <input className="input" type="text" id="other" name="other" value={formData.other} onChange={handleChange}></input><br />
+                </div>
+                </div>
+                <div className="field">
+                <label className="label" for="totalexpense">Total Expense:</label><br />
+                <div className="control">
+                <input className="input" type="text" id="totalexpensee" name="totalexpense" value={formData.totalexpense} onChange={handleChange}/><br />
                 </div>
                 </div>
                 <input className="button is-primary" type="submit" onClick={handleClick}/>
