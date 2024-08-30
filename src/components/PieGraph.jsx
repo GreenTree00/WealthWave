@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 function PieGraph () {
 
-    const [income, setIncome] = useState({row: ""});
-    const [expense, setExpense] = useState({row: ""});
+    const [income, setIncome] = useState({total_income: 0});      //change this so that type is income and the value is space there also
+    const [expense, setExpense] = useState({total_expense: 0});
       
-      const COLORS = ["#00FF00", "#FF0000", /*"#FFBB28", "#FF8042"*/];
+      const COLORS = ["#00FF00", "#FF0000", "#FFBB28", "#FF8042"];
       
       const RADIAN = Math.PI / 180;
       const renderCustomizedLabel = ({
@@ -45,8 +45,9 @@ function PieGraph () {
           }
           const result = await response.json();
           var {resExp, resInc} = result;
-          setIncome(resInc[0].total_income);
-          setExpense(resExp[0].total_expense);
+          setIncome(resInc);
+          setExpense(resExp);
+          console.log(resInc);   
         } catch (err) {
           console.log(err);
         }
@@ -54,30 +55,22 @@ function PieGraph () {
   
       fetchData(); 
     }, []);
-
     
+    const data = []
 
-
-    //here is where i need to map the useState object for both income and expense and find how to place them into the data array so that the piegraph can render them
-    /*const data = [
-      { name: "Income", value: income[0].total_income },
-      { name: "Expense", value:  }
-    ];*/
-    
-
-
-      const data  = [
-      { name: "Income", value: 100 },
-      { name: "Expense", value: 100 },
+      /*const data = [
+      { name: "Income", value:  inc },  //income.total_income
+      { name: "Expense", value: exp }, //expense.total_expense
       //{ name: "Group C", value: 100 },
       //{ name: "Group D", value: 100 }
-    ];
-         
+    ];*/
+
 
   return (    
     <div>
     <p>Your Past Month</p>
     <PieChart width={400} height={400}>
+      <Tooltip />
       <Pie
         data={data}
         cx={200}
