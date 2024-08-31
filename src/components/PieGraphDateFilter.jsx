@@ -1,7 +1,7 @@
 import React, {useState} from "react";
+import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 
-
-function PieGraphDateFilter () {
+function BarGraphDateFilter () {
 
     const [formData, setFormData] = useState({
         type: "", firstdate: "", seconddate: ""
@@ -28,7 +28,6 @@ function PieGraphDateFilter () {
                });
                setFormData({type: "", firstdate: "", seconddate: ""});
                const data = await response.json();
-               console.log(data[0].total_income);          //console.logs the data for total income
                } catch (error) {
                console.error('Error:', error);
                alert("There was a problem adding this data. Please try again later");
@@ -44,7 +43,6 @@ function PieGraphDateFilter () {
        });
        setFormData({type: "", firstdate: "", seconddate: ""});
        const data = await response.json();
-       console.log(data[0].total_expense);                         // console.logs the data for total expense
        } catch (error) {
        console.error('Error:', error);
        alert("There was a problem adding this data. Please try again later");
@@ -59,13 +57,30 @@ function PieGraphDateFilter () {
            });
            setFormData({type: "", firstdate: "", seconddate: ""});
            const data = await response.json();
-           console.log(data);
-           //console.log(data.resInc[0].total_income, data.resExp[0].total_expense);     // console.logs the data for total income and expense
            } catch (error) {
            console.error('Error:', error);
            alert("There was a problem adding this data. Please try again later");
        }};
    }
+
+   const data = [{
+    name: 'Page A',
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'Page B',
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: 'Page C',
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  }];
 
     return (
     <form className="box">
@@ -91,8 +106,14 @@ function PieGraphDateFilter () {
     </div>
     </div>
     <input className="button is-primary" type="submit" onClick={handleClick}/>
+    <BarChart width={400} height={200} data={data}>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="uv" fill="#8884d8" />
+    </BarChart>
     </form>
     )
 }
 
-export default PieGraphDateFilter;
+export default BarGraphDateFilter;
