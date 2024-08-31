@@ -3,10 +3,10 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 function PieGraph () {
 
-    const [income, setIncome] = useState({total_income: 0});      //change this so that type is income and the value is space there also
-    const [expense, setExpense] = useState({total_expense: 0});
+    const [data, setData] = useState([{ name: "", value: 0 }])
+    
       
-      const COLORS = ["#00FF00", "#FF0000", "#FFBB28", "#FF8042"];
+      const COLORS = ["#FF0000", "#00FF00", "#FFBB28", "#FF8042"];
       
       const RADIAN = Math.PI / 180;
       const renderCustomizedLabel = ({
@@ -45,9 +45,7 @@ function PieGraph () {
           }
           const result = await response.json();
           var {resExp, resInc} = result;
-          setIncome(resInc);
-          setExpense(resExp);
-          console.log(resInc);   
+          setData([...resExp, ...resInc])  
         } catch (err) {
           console.log(err);
         }
@@ -55,15 +53,6 @@ function PieGraph () {
   
       fetchData(); 
     }, []);
-    
-    const data = []
-
-      /*const data = [
-      { name: "Income", value:  inc },  //income.total_income
-      { name: "Expense", value: exp }, //expense.total_expense
-      //{ name: "Group C", value: 100 },
-      //{ name: "Group D", value: 100 }
-    ];*/
 
 
   return (    
