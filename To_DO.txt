@@ -1,8 +1,11 @@
-1. Break the app down into 4 squares that all have different functionality. Each square when pressed will open up its functionality and the other squares will be minimised
+1. Make the pie chart work 
+-think of way to remove the $ from response of useEffect on month route
+-map the data and place it into a format recharts can understand
+
+2. Think of way to make sure that the dates that are being lookup up if you select 1 day dont cause an errro
 
 
-2. 
-
+2.5 Add bar graph to data lookup tool that will pop up once the use places in 2 valid dates
 
 3.Add charts using https://recharts.org/en-US/api/Pie
 

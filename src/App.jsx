@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import AddIncome from "./components/AddIncome";
 import DeductIncome from "./components/DeductIncome";
 import PieGraph from "./components/PieGraph";
-import BarGraphDateFilter from "./components/PieGraphDateFilter";
+import BarGraphDateFilter from "./components/BarGraphDateFilter";
 import "./App.css"
 
 function App() {
