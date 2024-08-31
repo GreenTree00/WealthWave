@@ -6,7 +6,7 @@ function PieGraph () {
     const [data, setData] = useState([{ name: "", value: 0 }])
     
       
-      const COLORS = ["#FF0000", "#00FF00", "#FFBB28", "#FF8042"];
+      const COLORS = ["#FF5722", "#2196F3", "#FFC107", "#9C27B0", "#03A9F4", "#03A9F4"];
       
       const RADIAN = Math.PI / 180;
       const renderCustomizedLabel = ({
