@@ -7,6 +7,11 @@ function BarGraphDateFilter () {
         type: "", firstdate: "", seconddate: ""
      })
 
+     const [data, setData] = useState([{
+        name: '',
+        value: 0
+     }])
+
      const handleChange = (event) => {
         const {name, value} = event.target;
         setFormData({
@@ -27,7 +32,8 @@ function BarGraphDateFilter () {
                    },
                });
                setFormData({type: "", firstdate: "", seconddate: ""});
-               const data = await response.json();
+               const serverData = await response.json();
+               setData(serverData);
                } catch (error) {
                console.error('Error:', error);
                alert("There was a problem adding this data. Please try again later");
@@ -42,7 +48,8 @@ function BarGraphDateFilter () {
            },
        });
        setFormData({type: "", firstdate: "", seconddate: ""});
-       const data = await response.json();
+       const serverData = await response.json();
+       setData(serverData);
        } catch (error) {
        console.error('Error:', error);
        alert("There was a problem adding this data. Please try again later");
@@ -56,31 +63,15 @@ function BarGraphDateFilter () {
                },
            });
            setFormData({type: "", firstdate: "", seconddate: ""});
-           const data = await response.json();
+           const {resInc, resExp} = await response.json();
+           setData([...resInc, ...resExp]);
            } catch (error) {
            console.error('Error:', error);
            alert("There was a problem adding this data. Please try again later");
        }};
    }
 
-   const data = [{
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  }];
+   
 
     return (
     <form className="box">
@@ -110,7 +101,7 @@ function BarGraphDateFilter () {
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="uv" fill="#8884d8" />
+                <Bar dataKey="value" fill="#8884d8" />
     </BarChart>
     </form>
     )
