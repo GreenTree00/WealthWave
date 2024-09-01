@@ -37,7 +37,7 @@ const [formData, setFormData] = useState({
 
     return (
         <div>
-            <p>Add Income</p>
+            <p className="title">Add Income</p>
             <form className="box">
                 <div className="field">
                 <label className="label" for="date">Date:</label>

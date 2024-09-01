@@ -75,6 +75,8 @@ function BarGraphDateFilter () {
 
     return (
         <div>
+            <p className="title">Look Up By Specific Date</p>
+        <div>
     <form className="box">
     <label for="type">Which data do you want to see:</label>
     <div class="select">
@@ -108,6 +110,7 @@ function BarGraphDateFilter () {
                 <Bar dataKey="value" fill="#8884d8" />
     </BarChart>
     </form>
+    </div>
     </div>
     )
 }

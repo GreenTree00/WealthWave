@@ -36,7 +36,7 @@ function DeductIncome () {
 
     return (
         <div>
-                <p>Add Expense</p>
+                <p className="title">Add Expense</p>
                 <form className="box">
                 <div className="field">
                 <label className="label" for="birthday">Date:</label>
