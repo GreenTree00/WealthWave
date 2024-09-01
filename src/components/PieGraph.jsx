@@ -58,6 +58,7 @@ function PieGraph () {
   return (    
     <div>
     <p>Your Past Month</p>
+    <div className="box">
     <PieChart width={400} height={400}>
       <Tooltip />
       <Pie
@@ -75,6 +76,7 @@ function PieGraph () {
         ))}
       </Pie>
     </PieChart>
+    </div>
     </div>
   );
 }
