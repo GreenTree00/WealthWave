@@ -59,6 +59,8 @@ function PieGraph () {
     <div>
     <p className="title">Your Past Month</p>
     <div className="box">
+    <div style={{ width: '100%', height: 300 }}>
+    <ResponsiveContainer>
     <PieChart width={400} height={400}>
       <Tooltip />
       <Pie
@@ -76,6 +78,8 @@ function PieGraph () {
         ))}
       </Pie>
     </PieChart>
+    </ResponsiveContainer>
+    </div>
     </div>
     </div>
   );

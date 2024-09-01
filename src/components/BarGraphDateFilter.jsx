@@ -103,12 +103,16 @@ function BarGraphDateFilter () {
     <br />
     <br />
     <br />
+    <div style={{ width: '100%', height: 300 }}>
+    <ResponsiveContainer>
     <BarChart width={400} height={200} data={data}>
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
                 <Bar dataKey="value" fill="#8884d8" />
     </BarChart>
+    </ResponsiveContainer>
+    </div>
     </form>
     </div>
     </div>
