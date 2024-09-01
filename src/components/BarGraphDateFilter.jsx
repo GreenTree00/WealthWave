@@ -74,6 +74,7 @@ function BarGraphDateFilter () {
    
 
     return (
+        <div>
     <form className="box">
     <label for="type">Which data do you want to see:</label>
     <div class="select">
@@ -97,6 +98,9 @@ function BarGraphDateFilter () {
     </div>
     </div>
     <input className="button is-primary" type="submit" onClick={handleClick}/>
+    <br />
+    <br />
+    <br />
     <BarChart width={400} height={200} data={data}>
                 <XAxis dataKey="name" />
                 <YAxis />
@@ -104,6 +108,7 @@ function BarGraphDateFilter () {
                 <Bar dataKey="value" fill="#8884d8" />
     </BarChart>
     </form>
+    </div>
     )
 }
 
