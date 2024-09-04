@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import Table from "./Table";
+import MonthTable from "./Tables/MonthTable";
 
 function PieGraph () {
 
     const [data, setData] = useState([{ name: "", value: 0 }])
-
-    const [incomeTableData, setIncomeTableData] = useState([{date: 0, type: "", value: 0}]);
-
-    const [expenseTableData, setExpenseTableData] = useState([{date: 0, type: "", value: 0}]);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -27,26 +23,6 @@ function PieGraph () {
   
       fetchData(); 
     }, []);
-    
-    useEffect(() => {           // this route will server the data for the table
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/data/period/month/table`);
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const result = await response.json();
-          var {resExp, resInc} = result;
-          setIncomeTableData(resInc);
-          setExpenseTableData(resExp);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-  
-      fetchData(); 
-    }, []);
-
 
       const COLORS = ["#FF5722", "#2196F3", "#FFC107", "#9C27B0", "#03A9F4", "#03A9F4"];
       
@@ -103,7 +79,7 @@ function PieGraph () {
     </PieChart>
     </ResponsiveContainer>
     </div>
-    <Table income={incomeTableData} expese={expenseTableData}/>
+    <MonthTable/>
     </div>
     </div>
   );
