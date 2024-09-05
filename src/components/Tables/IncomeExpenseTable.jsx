@@ -1,30 +1,7 @@
-import {useState, useEffect} from "react";
+function IncomeExpenseTable ({sendIncomeExpense}) {
 
-function IncomeExpenseTable () {
-
-    const [incomeTableData, setIncomeTableData] = useState([{date: 0, type: "", value: 0}]);
-
-    const [expenseTableData, setExpenseTableData] = useState([{date: 0, type: "", value: 0}]);
-
-    useEffect(() => {           // this route will server the data for the table
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period/table`);
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const result = await response.json();
-          var {resExp, resInc} = result;
-          setIncomeTableData(resInc);
-          setExpenseTableData(resExp);
-        } catch (err) {
-          console.log(err);
-        }
-      };
+    const {resInc, resExp} = sendIncomeExpense;
   
-      fetchData(); 
-    }, []);
-
     return (
         <table class="table is-striped is-fullwidth">
   <thead>
@@ -35,21 +12,21 @@ function IncomeExpenseTable () {
     </tr>
   </thead>
   <tbody>
-    {incomeTableData.map((income) => {
+  {resInc.map((items) => {
       return (
-      <tr>
-      <td>{new Date(income.date).toLocaleDateString()}</td>
-      <td>{income.type}</td>
-      <td>${income.value}</td>
+        <tr>
+      <td>{new Date(items.date).toLocaleDateString()}</td>
+      <td>Income</td>
+      <td>${items.total_income}</td>
     </tr>
       )
     })}
-    {expenseTableData.map((expense) => {
+    {resExp.map((items) => {
       return (
-      <tr>
-      <td>{new Date(expense.date).toLocaleDateString()}</td>
-      <td>{expense.type}</td>
-      <td>${expense.value}</td>
+        <tr>
+      <td>{new Date(items.date).toLocaleDateString()}</td>
+      <td>Expense</td>
+      <td>${items.total_expense}</td>
     </tr>
       )
     })}
