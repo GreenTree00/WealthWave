@@ -3,7 +3,7 @@ function IncomeTable ({sendIncome}) {
   let income = sendIncome;
 
     return (
-        <table class="table is-striped is-fullwidth">
+        <table className="table is-striped is-fullwidth">
   <thead>
     <tr>
       <th>Date</th>
@@ -17,7 +17,7 @@ function IncomeTable ({sendIncome}) {
   <tbody>
     {income.map((items) => {
       return (
-        <tr>
+        <tr key={items.id}>
       <td>{new Date(items.date).toLocaleDateString()}</td>
       <td>${items.job_income}</td>
       <td>${items.side_hustle_income}</td>

@@ -3,7 +3,7 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
     const {resInc, resExp} = sendIncomeExpense;
   
     return (
-        <table class="table is-striped is-fullwidth">
+        <table className="table is-striped is-fullwidth">
   <thead>
     <tr>
       <th>Date</th>
@@ -14,7 +14,7 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
   <tbody>
   {resInc.map((items) => {
       return (
-        <tr>
+        <tr key={items.id}>
       <td>{new Date(items.date).toLocaleDateString()}</td>
       <td>Income</td>
       <td>${items.total_income}</td>
@@ -23,7 +23,7 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
     })}
     {resExp.map((items) => {
       return (
-        <tr>
+        <tr key={items.id}>
       <td>{new Date(items.date).toLocaleDateString()}</td>
       <td>Expense</td>
       <td>${items.total_expense}</td>

@@ -26,7 +26,7 @@ function MonthTable () {
     }, []);
 
     return (
-        <table class="table is-striped is-fullwidth">
+        <table className="table is-striped is-fullwidth">
   <thead>
     <tr>
       <th>Date</th>
@@ -37,7 +37,7 @@ function MonthTable () {
   <tbody>
     {incomeTableData.map((income) => {
       return (
-      <tr>
+      <tr key={income.id}>
       <td>{new Date(income.date).toLocaleDateString()}</td>
       <td>{income.type}</td>
       <td>${income.value}</td>
@@ -46,7 +46,7 @@ function MonthTable () {
     })}
     {expenseTableData.map((expense) => {
       return (
-      <tr>
+      <tr key={expense.id}>
       <td>{new Date(expense.date).toLocaleDateString()}</td>
       <td>{expense.type}</td>
       <td>${expense.value}</td>

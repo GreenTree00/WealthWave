@@ -3,7 +3,7 @@ function ExpenseTable ({sendExpense}) {
   let expense = sendExpense;
 
     return (
-        <table class="table is-striped is-fullwidth">
+        <table className="table is-striped is-fullwidth">
   <thead>
     <tr>
       <th>Date</th>
@@ -19,7 +19,7 @@ function ExpenseTable ({sendExpense}) {
   <tbody>
     {expense.map((items) => {
       return (
-        <tr>
+        <tr key={items.id}>
       <td>{new Date(items.date).toLocaleDateString()}</td>
       <td>${items.housing}</td>
       <td>${items.food}</td>
