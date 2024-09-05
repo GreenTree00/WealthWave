@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import IncomeTable from "./Tables/IncomeTable";
 import ExpenseTable from "./Tables/ExpenseTable";
+import IncomeExpenseTable from "./Tables/IncomeExpenseTable";
 
 function BarGraphDateFilter () {
 
@@ -99,9 +100,24 @@ function BarGraphDateFilter () {
            setFormData({type: "", firstdate: "", seconddate: ""});
            const {resInc, resExp} = await response.json();
            setData([...resInc, ...resExp]);
-           } catch (error) {
-           console.error('Error:', error);
-           alert("There was a problem adding this data. Please try again later");
+           try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period/table`, {     
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const serverData = await response.json();
+            setTableData(serverData);
+            setTableName("Income-Expense");
+            } catch (error) {
+            console.error('Error:', error);
+            alert("There was a problem adding this data. Please try again later");
+            }
+        } catch (error) {
+        console.error('Error:', error);
+        alert("There was a problem adding this data. Please try again later");
        }};
    }
 
@@ -149,6 +165,7 @@ function BarGraphDateFilter () {
     </div>
     {tableName=="Income"? <IncomeTable sendIncome={tableData}/>:""}
     {tableName=="Expense"? <ExpenseTable sendExpense={tableData}/>:""}
+    {tableName=="Income-Expense"? <IncomeExpenseTable sendIncomeExpense={tableData}/>:""}
     </form>
     </div>
     </div>
