@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import IncomeTable from "./Tables/IncomeTable";
+import ExpenseTable from "./Tables/ExpenseTable";
 
 function BarGraphDateFilter () {
 
@@ -11,6 +13,10 @@ function BarGraphDateFilter () {
         name: '',
         value: 0
      }])
+
+     const [tableData, setTableData] = useState([{}]);
+
+     const [tableName, setTableName] = useState("");
 
      const handleChange = (event) => {
         const {name, value} = event.target;
@@ -34,9 +40,23 @@ function BarGraphDateFilter () {
                setFormData({type: "", firstdate: "", seconddate: ""});
                const serverData = await response.json();
                setData(serverData);
-               } catch (error) {
-               console.error('Error:', error);
-               alert("There was a problem adding this data. Please try again later");
+               try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period/table`, {     
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                const serverData = await response.json();
+                setTableData(serverData);
+                setTableName("Income")
+                    } catch (err) {
+                    console.log(err);
+                    }
+            } catch (error) {
+            console.error('Error:', error);
+            alert("There was a problem adding this data. Please try again later");
            }
         } else if (formData.type == "Expense") {
       try {
@@ -50,6 +70,20 @@ function BarGraphDateFilter () {
        setFormData({type: "", firstdate: "", seconddate: ""});
        const serverData = await response.json();
        setData(serverData);
+       try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period/table`, {     
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const serverData = await response.json();
+        setTableData(serverData);
+        setTableName("Expense");
+            } catch (err) {
+            console.log(err);
+            }
        } catch (error) {
        console.error('Error:', error);
        alert("There was a problem adding this data. Please try again later");
@@ -113,6 +147,8 @@ function BarGraphDateFilter () {
     </BarChart>
     </ResponsiveContainer>
     </div>
+    {tableName=="Income"? <IncomeTable sendIncome={tableData}/>:""}
+    {tableName=="Expense"? <ExpenseTable sendExpense={tableData}/>:""}
     </form>
     </div>
     </div>
