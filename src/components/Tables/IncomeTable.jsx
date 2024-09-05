@@ -1,12 +1,6 @@
-import {useState, useEffect} from "react";
+function IncomeTable ({sendIncome}) {
 
-function IncomeTable () {
-
-  const [incomeTableData, setIncomeTableData] = useState();
-
-
-  
-
+  let income = sendIncome;
 
     return (
         <table class="table is-striped is-fullwidth">
@@ -21,28 +15,18 @@ function IncomeTable () {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>2024-08-31</td>
-      <td>Salary</td>
-      <td>Income</td>
-      <td>$3,000.00</td>
-      <td>Income</td>
+    {income.map((items) => {
+      return (
+        <tr>
+      <td>{new Date(items.date).toLocaleDateString()}</td>
+      <td>${items.job_income}</td>
+      <td>${items.side_hustle_income}</td>
+      <td>${items.stock_income}</td>
+      <td>${items.other}</td>
+      <td>${items.total_income}</td>
     </tr>
-    <tr>
-      <td>2024-08-30</td>
-      <td>Groceries</td>
-      <td>Food</td>
-      <td>-$150.00</td>
-      <td>Expense</td>
-    </tr>
-    <tr>
-      <td>2024-08-28</td>
-      <td>Rent</td>
-      <td>Housing</td>
-      <td>-$1,200.00</td>
-      <td>Expense</td>
-    </tr>
-    
+      )
+    })}
   </tbody>
 </table>
     )
