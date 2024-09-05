@@ -129,7 +129,7 @@ function BarGraphDateFilter () {
         <div>
     <form className="box">
     <label for="type">Which data do you want to see:</label>
-    <div class="select">
+    <div className="select">
     <select id="type" name="type" value={formData.type} onChange={handleChange}>
     <option value="blank"></option>
     <option value="Income">Income</option>
