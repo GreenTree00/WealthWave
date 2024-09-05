@@ -1,4 +1,7 @@
-function ExpenseTable () {
+function ExpenseTable ({sendExpense}) {
+
+  let expense = sendExpense;
+
     return (
         <table class="table is-striped is-fullwidth">
   <thead>
@@ -14,28 +17,20 @@ function ExpenseTable () {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>2024-08-31</td>
-      <td>Salary</td>
-      <td>Income</td>
-      <td>$3,000.00</td>
-      <td>Income</td>
+    {expense.map((items) => {
+      return (
+        <tr>
+      <td>{new Date(items.date).toLocaleDateString()}</td>
+      <td>${items.housing}</td>
+      <td>${items.food}</td>
+      <td>${items.transportation}</td>
+      <td>${items.insurance}</td>
+      <td>${items.entertainment}</td>
+      <td>${items.other}</td>
+      <td>${items.total_expense}</td>
     </tr>
-    <tr>
-      <td>2024-08-30</td>
-      <td>Groceries</td>
-      <td>Food</td>
-      <td>-$150.00</td>
-      <td>Expense</td>
-    </tr>
-    <tr>
-      <td>2024-08-28</td>
-      <td>Rent</td>
-      <td>Housing</td>
-      <td>-$1,200.00</td>
-      <td>Expense</td>
-    </tr>
-    
+      )
+    })}
   </tbody>
 </table>
     )
