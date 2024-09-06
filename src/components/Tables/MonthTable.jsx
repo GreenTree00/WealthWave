@@ -2,9 +2,9 @@ import {useState, useEffect} from "react";
 
 function MonthTable () {
 
-    const [incomeTableData, setIncomeTableData] = useState([{date: 0, type: "", value: 0}]);
+    const [incomeTableData, setIncomeTableData] = useState([{id: 0, date: 0, type: "", value: 0}]);
 
-    const [expenseTableData, setExpenseTableData] = useState([{date: 0, type: "", value: 0}]);
+    const [expenseTableData, setExpenseTableData] = useState([{id: 0, date: 0, type: "", value: 0}]);
 
     useEffect(() => {           
       const fetchData = async () => {
