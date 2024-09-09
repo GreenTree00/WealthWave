@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import FormInput from "./FormInput";
 
-function DeductIncome () {
+export default function DeductIncome () {
 
         const [formData, setFormData] = useState({
            date: "", housing: "", food: "", transportation: "", insurance: "", entertainment: "", other: "", totalexpense: ""
@@ -38,58 +39,16 @@ function DeductIncome () {
         <div>
                 <p className="title">Add Expense</p>
                 <form className="box">
-                <div className="field">
-                <label className="label" for="birthday">Date:</label>
-                <div className="control">
-                <input className="input" type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="housing">Housing:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="housing" name="housing" value={formData.housing} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="food">Food:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="food" name="food" value={formData.food} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <div className="control">
-                <label className="label" for="transportation">Transportation:</label><br />
-                <input className="input" type="text" id="transportation" name="transportation" value={formData.transportation} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="insurance">Insurance:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="insurance" name="insurance" value={formData.insurance} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="entertainment">Entertainment:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="entertainment" name="entertainment" value={formData.entertainment} onChange={handleChange}/><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="other">Other:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="other" name="other" value={formData.other} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="totalexpense">Total Expense:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="totalexpensee" name="totalexpense" value={formData.totalexpense} onChange={handleChange}/><br />
-                </div>
-                </div>
+                <FormInput For={"date"} Type={"date"} ID={"date"} Name={"date"} Value={formData.date} OnChange={handleChange}>Date:</FormInput>
+                <FormInput For={"housing"} Type={"text"} ID={"housing"} Name={"housing"} Value={formData.housing} OnChange={handleChange}>Housing:</FormInput>
+                <FormInput For={"food"} Type={"text"} ID={"food"} Name={"food"} Value={formData.food} OnChange={handleChange}>Food:</FormInput>
+                <FormInput For={"transportation"} Type={"text"} ID={"transportation"} Name={"transportation"} Value={formData.transportation} OnChange={handleChange}>Transportation:</FormInput>
+                <FormInput For={"insurance"} Type={"text"} ID={"insurance"} Name={"insurance"} Value={formData.insurance} OnChange={handleChange}>Insurance:</FormInput>
+                <FormInput For={"entertainment"} Type={"entertainment"} ID={"text"} Name={"entertainment"} Value={formData.entertainment} OnChange={handleChange}>Entertainment:</FormInput>
+                <FormInput For={"other"} Type={"other"} ID={"text"} Name={"other"} Value={formData.other} OnChange={handleChange}>Other:</FormInput>
+                <FormInput For={"totalexpense"} Type={"text"} ID={"totalexpense"} Name={"totalexpense"} Value={formData.totalexpense} OnChange={handleChange}>Total Expense:</FormInput>
                 <input className="button is-primary" type="submit" onClick={handleClick}/>
                 </form>
         </div>
     )
 }
-
-export default DeductIncome;
