@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import FormInput from "./FormInput";
 
-function AddIncome () {
+export default function AddIncome () {
 
 const [formData, setFormData] = useState({
     date: "", jobincome: "", sidehustleincome: "", stockincome: "", other: "", totalincome: ""
@@ -39,46 +40,14 @@ const [formData, setFormData] = useState({
         <div>
             <p className="title">Add Income</p>
             <form className="box">
-                <div className="field">
-                <label className="label" for="date">Date:</label>
-                <div className="control">
-                <input className="input" type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="jobincome">Job Income:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="jobincome" name="jobincome" value={formData.jobincome} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="sidehustleincome">Side Hustle Income:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="sidehustleincome" name="sidehustleincome" value={formData.sidehustleincome} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="stockincome">Stock Income:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="stockincome" name="stockincome" value={formData.stockincome} onChange={handleChange}></input><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="other">Other:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="other" name="other" value={formData.other} onChange={handleChange}></input ><br />
-                </div>
-                </div>
-                <div className="field">
-                <label className="label" for="totalincome">Total Income:</label><br />
-                <div className="control">
-                <input className="input" type="text" id="totalincome" name="totalincome" value={formData.totalincome} onChange={handleChange}/><br />
-                </div>
-                </div>
+                <FormInput For={"date"} Type={"date"} ID={"date"} Name={"date"} Value={formData.date} OnChange={handleChange}>Date:</FormInput>
+                <FormInput For={"jobincome"} Type={"text"} ID={"jobincome"} Name={"jobincome"} Value={formData.jobincome} OnChange={handleChange}>Job Income:</FormInput>
+                <FormInput For={"sidehustleincome"} Type={"text"} ID={"sidehustleincome"} Name={"sidehustleincome"} Value={formData.sidehustleincome} OnChange={handleChange}>Side Hustle Income:</FormInput>
+                <FormInput For={"stockincome"} Type={"stockincome"} ID={"stockincome"} Name={"stockincome"} Value={formData.stockincome} OnChange={handleChange}>Stock Income:</FormInput>
+                <FormInput For={"other"} Type={"text"} ID={"other"} Name={"other"} Value={formData.other} OnChange={handleChange}>Other:</FormInput>
+                <FormInput For={"totalincome"} Type={"text"} ID={"totalincome"} Name={"totalincome"} Value={formData.totalincome} OnChange={handleChange}>Total Income:</FormInput>
                 <input className="button is-primary" type="submit" onClick={handleClick}/>
                 </form>
         </div>
     )
 }
-
-export default AddIncome;
