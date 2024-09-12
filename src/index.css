@@ -37,7 +37,7 @@ background-color: aliceblue;
   }
   
 .custom-box {
-    width: 50%; /* Adjust this value as needed */
-    max-width: 800px; /* Optional: Set a maximum width */
-    margin: 0 auto; /* Center the container horizontally */
+    width: 75%; 
+    max-width: 800px; 
+    margin: 0 auto; 
   }
