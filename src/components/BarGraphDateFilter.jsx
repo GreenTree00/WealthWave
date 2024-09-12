@@ -127,7 +127,7 @@ function BarGraphDateFilter () {
         <div>
             <p className="title">Look Up By Specific Date</p>
         <div>
-    <form className="box">
+    <form className="box custom-box">
     <label for="type">Which data do you want to see:</label>
     <div className="select">
     <select id="type" name="type" value={formData.type} onChange={handleChange}>

@@ -39,7 +39,7 @@ const [formData, setFormData] = useState({
     return (
         <div>
             <p className="title">Add Income</p>
-            <form className="box">
+            <form className="box custom-box">
                 <FormInput For={"date"} Type={"date"} ID={"date"} Name={"date"} Value={formData.date} OnChange={handleChange}>Date:</FormInput>
                 <FormInput For={"jobincome"} Type={"text"} ID={"jobincome"} Name={"jobincome"} Value={formData.jobincome} OnChange={handleChange}>Job Income:</FormInput>
                 <FormInput For={"sidehustleincome"} Type={"text"} ID={"sidehustleincome"} Name={"sidehustleincome"} Value={formData.sidehustleincome} OnChange={handleChange}>Side Hustle Income:</FormInput>

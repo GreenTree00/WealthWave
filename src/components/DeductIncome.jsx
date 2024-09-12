@@ -38,7 +38,7 @@ export default function DeductIncome () {
     return (
         <div>
                 <p className="title">Add Expense</p>
-                <form className="box">
+                <form className="box custom-box">
                 <FormInput For={"date"} Type={"date"} ID={"date"} Name={"date"} Value={formData.date} OnChange={handleChange}>Date:</FormInput>
                 <FormInput For={"housing"} Type={"text"} ID={"housing"} Name={"housing"} Value={formData.housing} OnChange={handleChange}>Housing:</FormInput>
                 <FormInput For={"food"} Type={"text"} ID={"food"} Name={"food"} Value={formData.food} OnChange={handleChange}>Food:</FormInput>
