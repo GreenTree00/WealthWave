@@ -3,7 +3,7 @@ function ExpenseTable ({sendExpense}) {
   let expense = sendExpense;
 
     return (
-        <table className="table-layout:fixed">
+        <table className="table is-striped is-fullwidth">
   <thead>
     <tr>
       <th>Date</th>
