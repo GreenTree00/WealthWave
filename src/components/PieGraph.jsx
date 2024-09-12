@@ -56,7 +56,7 @@ function PieGraph () {
 
   return (    
     <div>
-    <p className="title">Your Past Month</p>
+    <p className="title">Home</p>
     <div className="box custom-box">
     <div style={{ width: '100%', height: 300 }}>
     <ResponsiveContainer>
