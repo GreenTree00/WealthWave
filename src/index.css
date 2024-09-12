@@ -29,3 +29,15 @@ background-color: aliceblue;
 }*/
 
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+.custom-box {
+    width: 50%; /* Adjust this value as needed */
+    max-width: 800px; /* Optional: Set a maximum width */
+    margin: 0 auto; /* Center the container horizontally */
+  }
