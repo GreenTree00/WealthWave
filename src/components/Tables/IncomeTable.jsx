@@ -2,17 +2,24 @@ function IncomeTable ({sendIncome}) {
 
   let income = sendIncome;
 
+  let errorMessage = "";
+    if (!Array.isArray(income) || !income.length) {
+    errorMessage = "There is no current income for this period. Please add some, or make sure your specified dates are correct";
+    }
+
     return (
         <table className="table is-striped is-fullwidth">
   <thead>
-    <tr>
+    {errorMessage === "" && (
+      <tr>
       <th>Date</th>
       <th>Job Income</th>
       <th>Side Hustle Income</th>
       <th>Stock Income</th>
       <th>Other</th>
       <th>Total Income</th>
-    </tr>
+      </tr>
+    )}
   </thead>
   <tbody>
     {income.map((items) => {
@@ -27,6 +34,11 @@ function IncomeTable ({sendIncome}) {
     </tr>
       )
     })}
+    {errorMessage === "There is no current income for this period. Please add some, or make sure your specified dates are correct" && (
+      <tr>
+        <td>{errorMessage}</td>
+      </tr>
+    )}
   </tbody>
 </table>
     )
