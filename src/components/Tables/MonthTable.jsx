@@ -25,6 +25,12 @@ function MonthTable () {
       fetchData(); 
     }, []);
 
+    // logic to show notice to use user that not data will causes a blank data
+    let errorMessage = "";
+    if ((!Array.isArray(incomeTableData) || !incomeTableData.length) && (!Array.isArray(expenseTableData) || !expenseTableData.length)) {
+    errorMessage = "To see data on the graph, please enter either Income or Expenses.";
+    }
+
     return (
         <table className="table is-striped is-fullwidth">
   <thead>
@@ -53,6 +59,11 @@ function MonthTable () {
     </tr>
       )
     })}
+    {errorMessage === "To see data on the graph, please enter either Income or Expenses." && (
+      <tr>
+        <td>{errorMessage}</td>
+      </tr>
+    )}
   </tbody>
 </table>
     )
