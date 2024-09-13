@@ -47,6 +47,12 @@ function MonthTable () {
       <td>{new Date(income.date).toLocaleDateString()}</td>
       <td>{income.type}</td>
       <td>${income.value}</td>
+      <td>
+      <button className="button is-warning" type="submit" onClick={console.log(income.id)}>Edit</button>
+      </td>
+      <td>
+      <button className="button is-danger" type="submit" onClick={console.log(income.id)}>Delete</button>
+      </td>
     </tr>
       )
     })}
@@ -56,6 +62,12 @@ function MonthTable () {
       <td>{new Date(expense.date).toLocaleDateString()}</td>
       <td>{expense.type}</td>
       <td>${expense.value}</td>
+      <td>
+      <button className="button is-warning" type="submit" onClick={console.log(expense.id)}>Edit</button>
+      </td>
+      <td>
+      <button className="button is-danger" type="submit" onClick={console.log(expense.id)}>Delete</button>
+      </td>
     </tr>
       )
     })}

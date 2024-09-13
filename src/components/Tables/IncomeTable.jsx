@@ -31,6 +31,12 @@ function IncomeTable ({sendIncome}) {
       <td>${items.stock_income}</td>
       <td>${items.other}</td>
       <td>${items.total_income}</td>
+      <td>
+      <button className="button is-warning" type="submit" onClick={console.log(items.id)}>Edit</button>
+      </td>
+      <td>
+      <button className="button is-danger" type="submit" onClick={console.log(items.id)}>Delete</button>
+      </td>
     </tr>
       )
     })}

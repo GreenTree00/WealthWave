@@ -35,6 +35,12 @@ function ExpenseTable ({sendExpense}) {
       <td>${items.entertainment}</td>
       <td>${items.other}</td>
       <td>${items.total_expense}</td>
+      <td>
+      <button className="button is-warning" onClick={console.log(items.id)}>Edit</button>
+      </td>
+      <td>
+      <button className="button is-danger" type="submit" onClick={console.log(items.id)}>Delete</button>
+      </td>
     </tr>
       )
     })}

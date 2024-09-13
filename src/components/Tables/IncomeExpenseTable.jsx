@@ -25,6 +25,12 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
       <td>{new Date(items.date).toLocaleDateString()}</td>
       <td>Income</td>
       <td>${items.total_income}</td>
+      <td>
+      <button className="button is-warning" onClick={console.log(items.id)}>Edit</button>
+      </td>
+      <td>
+      <button className="button is-danger" type="submit" onClick={console.log(items.id)}>Delete</button>
+      </td>
     </tr>
       )
     })}
@@ -34,6 +40,12 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
       <td>{new Date(items.date).toLocaleDateString()}</td>
       <td>Expense</td>
       <td>${items.total_expense}</td>
+      <td>
+      <button className="button is-warning" onClick={console.log(items.id)}>Edit</button>
+      </td>
+      <td>
+      <button className="button is-danger" type="submit" onClick={console.log(items.id)}>Delete</button>
+      </td>
     </tr>
       )
     })}
