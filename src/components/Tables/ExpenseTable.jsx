@@ -2,9 +2,15 @@ function ExpenseTable ({sendExpense}) {
 
   let expense = sendExpense;
 
+  let errorMessage = "";
+    if (!Array.isArray(expense) || !expense.length) {
+    errorMessage = "There is no current expenses for this period. Please add some, or make sure your specified dates are correct";
+    }
+
     return (
         <table className="table is-striped is-fullwidth">
   <thead>
+  {errorMessage === "" && (
     <tr>
       <th>Date</th>
       <th>Housing</th>
@@ -15,6 +21,7 @@ function ExpenseTable ({sendExpense}) {
       <th>Other</th>
       <th>Total Expense</th>
     </tr>
+  )}
   </thead>
   <tbody>
     {expense.map((items) => {
@@ -31,6 +38,11 @@ function ExpenseTable ({sendExpense}) {
     </tr>
       )
     })}
+    {errorMessage === "There is no current expenses for this period. Please add some, or make sure your specified dates are correct" && (
+      <tr>
+        <td>{errorMessage}</td>
+      </tr>
+    )}
   </tbody>
 </table>
     )
