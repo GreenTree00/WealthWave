@@ -19,21 +19,19 @@ function App() {
         <Header />
         <Pages>
         <button onClick={() => changePage("home")} className="navbar-item">Home</button>
-        <button onClick={() => changePage("bar")} className="navbar-item">Look Up By Day</button>
+        <button onClick={() => changePage("bar")} className="navbar-item">Look Up By Specific Date</button>
         <button onClick={() => changePage("income")} className="navbar-item">Income</button>
         <button onClick={() => changePage("expense")} className="navbar-item">Expense</button>
         </Pages>
         <br />
         <br />
-        <div className="addData">
           <div className="grid">
             <BodyContent page={page} />
           </div>
-        </div>
       </div>
       <Footer />
     </>
   );
 }
 
-export default App
+export default App;
