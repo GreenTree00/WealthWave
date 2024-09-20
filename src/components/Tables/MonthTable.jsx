@@ -1,10 +1,16 @@
 import {useState, useEffect} from "react";
+import EditData from "../EditData";
+import DeleteData from "../DeleteData";
 
 function MonthTable () {
 
     const [incomeTableData, setIncomeTableData] = useState([{id: 0, date: 0, type: "", value: 0}]);
 
     const [expenseTableData, setExpenseTableData] = useState([{id: 0, date: 0, type: "", value: 0}]);
+
+    const [edit, setEdit] = useState({typeofData: "", id: 0});
+
+    const [deleteitem, setDeleteItem] = useState({typeofData: "", id: 0});
 
     useEffect(() => {           
       const fetchData = async () => {
@@ -25,13 +31,13 @@ function MonthTable () {
       fetchData(); 
     }, []);
 
-    // logic to show notice to use user that not data will causes a blank data
     let errorMessage = "";
     if ((!Array.isArray(incomeTableData) || !incomeTableData.length) && (!Array.isArray(expenseTableData) || !expenseTableData.length)) {
     errorMessage = "To see data on the graph, please enter either Income or Expenses.";
     }
 
     return (
+      <>
         <table className="table is-striped is-fullwidth">
   <thead>
     <tr>
@@ -48,10 +54,10 @@ function MonthTable () {
       <td>{income.type}</td>
       <td>${income.value}</td>
       <td>
-      <button className="button is-warning" type="submit" onClick={console.log(income.id)}>Edit</button>
+      <button className="button is-warning" type="submit" onClick={() => setEdit({typeofData: "Edit Income", id: income.id})}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="submit" onClick={console.log(income.id)}>Delete</button>
+      <button className="button is-danger" type="submit" onClick={() => setDeleteItem({typeofData: "Delete Income", id: income.id})}>Delete</button>
       </td>
     </tr>
       )
@@ -63,10 +69,10 @@ function MonthTable () {
       <td>{expense.type}</td>
       <td>${expense.value}</td>
       <td>
-      <button className="button is-warning" type="submit" onClick={console.log(expense.id)}>Edit</button>
+      <button className="button is-warning" type="submit" onClick={() => setEdit({typeofData: "Edit Expense", id: expense.id})}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="submit" onClick={console.log(expense.id)}>Delete</button>
+      <button className="button is-danger" type="submit" onClick={() => setDeleteItem({typeofData: "Delete Expense", id: expense.id})}>Delete</button>
       </td>
     </tr>
       )
@@ -78,6 +84,9 @@ function MonthTable () {
     )}
   </tbody>
 </table>
+{(edit.typeofData === "Edit Income" || edit.typeofData === "Edit Expense") ? <EditData typeofData={edit.typeofData} id={edit.id}/> : null}
+{(deleteitem.typeofData === "Delete Income" || deleteitem.typeofData === "Delete Expense") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id}/> : null}
+</>
     )
 }
 export default MonthTable;
