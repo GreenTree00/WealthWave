@@ -1,11 +1,14 @@
 import {useState} from "react";
 import EditData from "../EditData";
+import DeleteData from "../DeleteData";
 
-function IncomeExpenseTable ({sendIncomeExpense}) {
+function IncomeExpenseTable ({sendIncomeExpense, refresh}) {
 
   const [edit, setEdit] = useState({typeofData: "", id: 0});
 
     const {resInc, resExp} = sendIncomeExpense;
+
+  const [deleteitem, setDeleteItem] = useState({typeofData: "", id: 0});
 
     let errorMessage = "";
     if ((!Array.isArray(resInc) || !resInc.length) && (!Array.isArray(resExp) || !resExp.length)) {
@@ -35,7 +38,7 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
       <button className="button is-warning" onClick={(event) => {event.preventDefault(); setEdit({typeofData: "Edit Income", id: items.id});}}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="submit" onClick={console.log(items.id)}>Delete</button>
+      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Income", id: items.id});refresh();}}>Delete</button>
       </td>
     </tr>
       )
@@ -50,7 +53,7 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
       <button className="button is-warning" onClick={(event) => {event.preventDefault(); setEdit({typeofData: "Edit Expense", id: items.id});}}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="submit" onClick={console.log(items.id)}>Delete</button>
+      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Expense", id: items.id});refresh();}}>Delete</button>
       </td>
     </tr>
       )
@@ -63,6 +66,7 @@ function IncomeExpenseTable ({sendIncomeExpense}) {
   </tbody>
 </table>
 {(edit.typeofData === "Edit Expense") ? <EditData typeofData={edit.typeofData} id={edit.id}/> : null}
+{(deleteitem.typeofData === "Delete Income" || deleteitem.typeofData === "Delete Expense") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id}/> : null}
 </>
     )
 }
