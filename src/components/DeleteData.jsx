@@ -2,11 +2,6 @@ import {useEffect} from "react";
 
 export default function DeleteData ({typeofData, id}) {
 
-  window.location.reload();           //this is not as efficent as using a different menthod. It may be better to have this inside the 
-  
-    
-  
-
   useEffect(() => {
     if (typeofData && id) {
       async function fetchData() {
@@ -15,12 +10,9 @@ export default function DeleteData ({typeofData, id}) {
             typeofData === 'Delete Income'
               ? `${import.meta.env.VITE_API_URL}/data/income/delete/${id}`
               : `${import.meta.env.VITE_API_URL}/data/expense/delete/${id}`;
-          
-          // Perform the DELETE request
           const response = await fetch(url, {
-            method: 'DELETE', // Use DELETE method
+            method: 'DELETE', 
           });
-          
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
@@ -33,6 +25,5 @@ export default function DeleteData ({typeofData, id}) {
       
     }
   }, []);
-      
-    return (null)
+return (null)
 }
