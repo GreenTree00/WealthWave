@@ -1,11 +1,12 @@
 import {useState} from "react"
 import EditData from "../EditData";
+import DeleteData from "../DeleteData";
 
-function IncomeTable ({sendIncome}) {
-
-  
+function IncomeTable ({sendIncome, refresh}) {
 
   const [edit, setEdit] = useState({typeofData: "", id: 0});
+
+  const [deleteitem, setDeleteItem] = useState({typeofData: "", id: 0});
 
   let income = sendIncome;
 
@@ -43,7 +44,7 @@ function IncomeTable ({sendIncome}) {
       <button className="button is-warning" onClick={(event) => {event.preventDefault(); setEdit({typeofData: "Edit Income", id: items.id});}}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" onClick={console.log(items.id)}>Delete</button>
+      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Income", id: items.id});refresh();}}>Delete</button>
       </td>
     </tr>
       )
@@ -56,6 +57,7 @@ function IncomeTable ({sendIncome}) {
   </tbody>
 </table>
 {(edit.typeofData === "Edit Income") ? <EditData typeofData={edit.typeofData} id={edit.id}/> : null}
+{(deleteitem.typeofData === "Delete Income") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id}/> : null}
 </>
     )
 }
