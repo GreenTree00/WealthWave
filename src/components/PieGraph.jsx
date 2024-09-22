@@ -6,6 +6,12 @@ function PieGraph () {
 
     const [data, setData] = useState([{ name: "", value: 0 }])
 
+    const [refresh, setRefresh] = useState(0);
+
+    function DeleteItemRefresh () {
+      setRefresh(refresh + 1);
+    }
+
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -22,7 +28,7 @@ function PieGraph () {
       };
   
       fetchData(); 
-    }, []);
+    }, [refresh]);
 
       const COLORS = ["#FF5722", "#2196F3", "#FFC107", "#9C27B0", "#03A9F4", "#03A9F4"];
       
@@ -79,7 +85,7 @@ function PieGraph () {
     </PieChart>
     </ResponsiveContainer>
     </div>
-    <MonthTable/>
+    <MonthTable refresh={DeleteItemRefresh}/>
     </div>
     </div>
   );

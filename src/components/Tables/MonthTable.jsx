@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import EditData from "../EditData";
 import DeleteData from "../DeleteData";
 
-function MonthTable () {
+function MonthTable ({refresh}) {
 
     const [incomeTableData, setIncomeTableData] = useState([{id: 0, date: 0, type: "", value: 0}]);
 
@@ -29,7 +29,7 @@ function MonthTable () {
       };
   
       fetchData(); 
-    }, []);
+    }, [refresh]);
 
     let errorMessage = "";
     if ((!Array.isArray(incomeTableData) || !incomeTableData.length) && (!Array.isArray(expenseTableData) || !expenseTableData.length)) {
@@ -57,7 +57,7 @@ function MonthTable () {
       <button className="button is-warning" type="submit" onClick={() => setEdit({typeofData: "Edit Income", id: income.id})}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="submit" onClick={() => setDeleteItem({typeofData: "Delete Income", id: income.id})}>Delete</button>
+      <button className="button is-danger" type="submit" onClick={() => {setDeleteItem({typeofData: "Delete Income", id: income.id});refresh();}}>Delete</button>
       </td>
     </tr>
       )
@@ -72,7 +72,7 @@ function MonthTable () {
       <button className="button is-warning" type="submit" onClick={() => setEdit({typeofData: "Edit Expense", id: expense.id})}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="submit" onClick={() => setDeleteItem({typeofData: "Delete Expense", id: expense.id})}>Delete</button>
+      <button className="button is-danger" type="submit" onClick={() => {setDeleteItem({typeofData: "Delete Expense", id: expense.id}); refresh();}}>Delete</button>
       </td>
     </tr>
       )
