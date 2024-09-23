@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import IncomeTable from "./Tables/IncomeTable";
 import ExpenseTable from "./Tables/ExpenseTable";
@@ -19,12 +19,6 @@ function BarGraphDateFilter () {
 
      const [tableName, setTableName] = useState("");
 
-     const [refresh, setRefresh] = useState(0);
-
-    function DeleteItemRefresh () {
-      setRefresh(refresh + 1);
-    }
-
      const handleChange = (event) => {
         const {name, value} = event.target;
         setFormData({
@@ -33,106 +27,35 @@ function BarGraphDateFilter () {
         });
     };
 
-    useEffect(() => {           // this is where i will tap into the prevValue of formData and resubmit the barchart
-        setFormData((prevValue) => ({
-            ...prevValue
-        }))
-        handleClick();
-    }, [refresh])
-
-        const handleClick = async (event) => {
-            event.preventDefault()
-            if (formData.type == "Income") {
-               try {
-                   const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period`, {     
-                       method: "POST",
-                       body: JSON.stringify(formData),
-                       headers: {
-                           "Content-Type": "application/json",
-                       },
-                   });
-                   setFormData({type: "", firstdate: "", seconddate: ""});
-                   const serverData = await response.json();
-                   setData(serverData);
-                   try {
-                    const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period/table`, {     
-                        method: "POST",
-                        body: JSON.stringify(formData),
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    });
-                    const serverData = await response.json();
-                    setTableData(serverData);
-                    setTableName("Income")
-                        } catch (err) {
-                        console.log(err);
-                        }
-                } catch (error) {
-                console.error('Error:', error);
-                alert("There was a problem adding this data. Please try again later");
-               }
-            } else if (formData.type == "Expense") {
-          try {
-           const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period`, {     
-               method: "POST",
-               body: JSON.stringify(formData),
-               headers: {
-                   "Content-Type": "application/json",
-               },
-           });
-           setFormData({type: "", firstdate: "", seconddate: ""});
-           const serverData = await response.json();
-           setData(serverData);
-           try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period/table`, {     
-                method: "POST",
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            const serverData = await response.json();
-            setTableData(serverData);
-            setTableName("Expense");
-                } catch (err) {
-                console.log(err);
-                }
-           } catch (error) {
-           console.error('Error:', error);
-           alert("There was a problem adding this data. Please try again later");
-       }} else if (formData.type == "Both Income & Expense") {
-           try {
-               const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period`, {     
-                   method: "POST",
-                   body: JSON.stringify(formData),
-                   headers: {
-                       "Content-Type": "application/json",
-                   },
-               });
-               setFormData({type: "", firstdate: "", seconddate: ""});
-               const {resInc, resExp} = await response.json();
-               setData([...resInc, ...resExp]);
-               try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period/table`, {     
+    const handleClick = async (event) => {
+        event && event.preventDefault(); // Handle cases where refresh is called without an event
+        if (formData.type === "Income") {
+            try {
+                // Fetch BarChart Data
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period`, {     
                     method: "POST",
                     body: JSON.stringify(formData),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    headers: { "Content-Type": "application/json" },
                 });
                 const serverData = await response.json();
-                setTableData(serverData);
-                setTableName("Income-Expense");
-                } catch (error) {
+                setData(serverData); // Update BarChart data
+    
+                // Fetch Table Data
+                const tableResponse = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period/table`, {     
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: { "Content-Type": "application/json" },
+                });
+                const tableServerData = await tableResponse.json();
+                setTableData(tableServerData); // Update table data
+                setTableName("Income");
+            } catch (error) {
                 console.error('Error:', error);
                 alert("There was a problem adding this data. Please try again later");
-                }
-            } catch (error) {
-            console.error('Error:', error);
-            alert("There was a problem adding this data. Please try again later");
-           }};
-       }
+            }
+        }
+        // Handle cases for Expense and Both Income & Expense similarly
+    };
 
     return (
         <div>
@@ -160,7 +83,7 @@ function BarGraphDateFilter () {
     <input className="input" type="date" id="seconddate" name="seconddate" value={formData.seconddate} onChange={handleChange}/>
     </div>
     </div>
-    <input className="button is-primary" type="submit" onClick={handleClick}/>
+    <button className="button is-primary" type="submit" onClick={handleClick}>Submit</button>
     <br />
     <br />
     <br />
@@ -174,9 +97,9 @@ function BarGraphDateFilter () {
     </BarChart>
     </ResponsiveContainer>
     </div>
-    {tableName=="Income"? <IncomeTable sendIncome={tableData} refresh={DeleteItemRefresh}/>:null}
-    {tableName=="Expense"? <ExpenseTable sendExpense={tableData} refresh={DeleteItemRefresh}/>:null}
-    {tableName=="Income-Expense"? <IncomeExpenseTable sendIncomeExpense={tableData} refresh={DeleteItemRefresh}/>:null}
+    {tableName=="Income"? <IncomeTable sendIncome={tableData} refresh={handleClick}/>:null}
+    {tableName=="Expense"? <ExpenseTable sendExpense={tableData} refresh={handleClick}/>:null}
+    {tableName=="Income-Expense"? <IncomeExpenseTable sendIncomeExpense={tableData} refresh={handleClick}/>:null}
     </form>
     </div>
     </div>
