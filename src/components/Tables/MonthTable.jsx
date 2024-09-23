@@ -43,7 +43,7 @@ function MonthTable ({refresh}) {
     <tr>
       <th>Date</th>
       <th>Type</th>
-      <th>Value</th>
+      <th>Total Value</th>
     </tr>
   </thead>
   <tbody>
