@@ -7,7 +7,7 @@ import IncomeExpenseTable from "./Tables/IncomeExpenseTable";
 function BarGraphDateFilter () {
 
     const [formData, setFormData] = useState({
-        type: "", firstdate: "", seconddate: ""
+        type: "", firstdate: "", seconddate: "", rerender: 1
      })
 
      const [data, setData] = useState([{
@@ -27,94 +27,69 @@ function BarGraphDateFilter () {
         });
     };
 
-        const handleClick = async (event) => {
-            event.preventDefault()
-            if (formData.type == "Income") {
-               try {
-                   const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period`, {     
-                       method: "POST",
-                       body: JSON.stringify(formData),
-                       headers: {
-                           "Content-Type": "application/json",
-                       },
-                   });
-                   //setFormData({type: "", firstdate: "", seconddate: ""});
-                   const serverData = await response.json();
-                   setData(serverData);
-                   try {
-                    const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period/table`, {     
+        async function handleClick (event) {
+            event.preventDefault();
+            if (formData.type === "Income") {
+                try {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period`, {     
                         method: "POST",
                         body: JSON.stringify(formData),
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
+                        headers: { "Content-Type": "application/json" },
                     });
                     const serverData = await response.json();
-                    setTableData(serverData);
-                    setTableName("Income")
-                        } catch (err) {
-                        console.log(err);
-                        }
+                    setData(serverData); // For BarChart
+        
+                    const tableResponse = await fetch(`${import.meta.env.VITE_API_URL}/data/income/period/table`, {     
+                        method: "POST",
+                        body: JSON.stringify(formData),
+                        headers: { "Content-Type": "application/json" },
+                    });
+                    const tableServerData = await tableResponse.json();
+                    setTableData(tableServerData); // For IncomeTable
+                    setTableName("Income");
                 } catch (error) {
-                console.error('Error:', error);
-                alert("There was a problem adding this data. Please try again later");
-               }
+                    console.error('Error:', error);
+                    alert("There was a problem adding this data. Please try again later");
+                }
             } else if (formData.type == "Expense") {
           try {
-           const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period`, {     
-               method: "POST",
-               body: JSON.stringify(formData),
-               headers: {
-                   "Content-Type": "application/json",
-               },
-           });
-           //setFormData({type: "", firstdate: "", seconddate: ""});
-           const serverData = await response.json();
-           setData(serverData);
-           try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period/table`, {     
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period`, {     
                 method: "POST",
                 body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
             });
             const serverData = await response.json();
-            setTableData(serverData);
-            setTableName("Expense");
-                } catch (err) {
-                console.log(err);
-                }
+            setData(serverData); // For BarChart
+
+            const tableResponse = await fetch(`${import.meta.env.VITE_API_URL}/data/expense/period/table`, {     
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: { "Content-Type": "application/json" },
+            });
+            const tableServerData = await tableResponse.json();
+            setTableData(tableServerData); // For ExpenseTable
+            setTableName("Expense");   
            } catch (error) {
            console.error('Error:', error);
            alert("There was a problem adding this data. Please try again later");
        }} else if (formData.type == "Both Income & Expense") {
            try {
-               const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period`, {     
-                   method: "POST",
-                   body: JSON.stringify(formData),
-                   headers: {
-                       "Content-Type": "application/json",
-                   },
-               });
-               //setFormData({type: "", firstdate: "", seconddate: ""});
-               const {resInc, resExp} = await response.json();
-               setData([...resInc, ...resExp]);
-               try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period/table`, {     
-                    method: "POST",
-                    body: JSON.stringify(formData),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                const serverData = await response.json();
-                setTableData(serverData);
-                setTableName("Income-Expense");
-                } catch (error) {
-                console.error('Error:', error);
-                alert("There was a problem adding this data. Please try again later");
-                }
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period`, {     
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: { "Content-Type": "application/json" },
+            });
+            const serverData = await response.json();
+            setData(serverData); // For BarChart
+
+            const tableResponse = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period/table`, {     
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: { "Content-Type": "application/json" },
+            });
+            const tableServerData = await tableResponse.json();
+            setTableData(tableServerData); // For IncomeExpenseTable
+            setTableName("Income-Expense");
             } catch (error) {
             console.error('Error:', error);
             alert("There was a problem adding this data. Please try again later");
