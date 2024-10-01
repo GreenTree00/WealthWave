@@ -7,7 +7,7 @@ import IncomeExpenseTable from "./Tables/IncomeExpenseTable";
 function BarGraphDateFilter () {
 
     const [formData, setFormData] = useState({
-        type: "", firstdate: "", seconddate: "", rerender: 1
+        type: "", firstdate: "", seconddate: "",
      })
 
      const [data, setData] = useState([{
@@ -79,8 +79,8 @@ function BarGraphDateFilter () {
                 body: JSON.stringify(formData),
                 headers: { "Content-Type": "application/json" },
             });
-            const serverData = await response.json();
-            setData(serverData); // For BarChart
+            const {resInc, resExp} = await response.json();
+            setData([...resInc, ...resExp]);; // For BarChart
 
             const tableResponse = await fetch(`${import.meta.env.VITE_API_URL}/data/income-expense/period/table`, {     
                 method: "POST",
