@@ -7,7 +7,7 @@ import IncomeExpenseTable from "./Tables/IncomeExpenseTable";
 function BarGraphDateFilter () {
 
     const [formData, setFormData] = useState({
-        type: "", firstdate: "", seconddate: "",
+        type: "", firstdate: "", seconddate: ""
      })
 
      const [data, setData] = useState([{
@@ -136,9 +136,9 @@ function BarGraphDateFilter () {
     </BarChart>
     </ResponsiveContainer>
     </div>
-    {tableName=="Income"? <IncomeTable sendIncome={tableData} refresh={handleClick}/>:null}
-    {tableName=="Expense"? <ExpenseTable sendExpense={tableData} refresh={handleClick}/>:null}
-    {tableName=="Income-Expense"? <IncomeExpenseTable sendIncomeExpense={tableData} refresh={handleClick}/>:null}
+    {tableName=="Income"? <IncomeTable sendIncome={tableData} resetComponent={handleClick} /*this is where I am sending the values from formData to be updated so that i can cause a rerender*//>:null}             
+    {tableName=="Expense"? <ExpenseTable sendExpense={tableData} resetComponent={handleClick}/>:null}
+    {tableName=="Income-Expense"? <IncomeExpenseTable sendIncomeExpense={tableData} resetComponent={handleClick}/>:null}
     </form>
     </div>
     </div>
