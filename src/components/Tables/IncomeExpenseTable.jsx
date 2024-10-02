@@ -2,7 +2,7 @@ import {useState} from "react";
 import EditData from "../EditData";
 import DeleteData from "../DeleteData";
 
-function IncomeExpenseTable ({sendIncomeExpense, refresh}) {
+function IncomeExpenseTable ({sendIncomeExpense}) {
 
   const [edit, setEdit] = useState({typeofData: "", id: 0});
 
@@ -38,7 +38,7 @@ function IncomeExpenseTable ({sendIncomeExpense, refresh}) {
       <button className="button is-warning" onClick={(event) => {event.preventDefault(); setEdit({typeofData: "Edit Income", id: items.id});}}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Income", id: items.id});refresh();}}>Delete</button>
+      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Income", id: items.id});}}>Delete</button>
       </td>
     </tr>
       )
@@ -53,7 +53,7 @@ function IncomeExpenseTable ({sendIncomeExpense, refresh}) {
       <button className="button is-warning" onClick={(event) => {event.preventDefault(); setEdit({typeofData: "Edit Expense", id: items.id});}}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Expense", id: items.id});refresh();}}>Delete</button>
+      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Expense", id: items.id});}}>Delete</button>
       </td>
     </tr>
       )
@@ -65,7 +65,7 @@ function IncomeExpenseTable ({sendIncomeExpense, refresh}) {
     )}
   </tbody>
 </table>
-{(edit.typeofData === "Edit Expense") ? <EditData typeofData={edit.typeofData} id={edit.id}/> : null}
+{(edit.typeofData === "Edit Income") || (edit.typeofData === "Edit Expense") ? <EditData typeofData={edit.typeofData} id={edit.id}/> : null}
 {(deleteitem.typeofData === "Delete Income" || deleteitem.typeofData === "Delete Expense") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id}/> : null}
 </>
     )
