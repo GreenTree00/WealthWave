@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import FormInput from "./FormInput";
 
-export default function EditData ({typeofData, id}) {
+export default function EditData ({typeofData, id, resetComponent}) {
 
   const [formData, setFormData] = useState({});
 
@@ -56,7 +56,7 @@ export default function EditData ({typeofData, id}) {
 
     return  (
       <>
-      {typeofData=="Edit Income"?
+      {typeofData=="Edit Income" ?    
       <div>
             <p className="title">{typeofData}</p>
             <form className="box custom-box">
@@ -66,11 +66,11 @@ export default function EditData ({typeofData, id}) {
                 <FormInput For={"stockincome"} Type={"text"} ID={"stock_income"} Name={"stock_income"} Value={formData.stock_income} OnChange={handleEdit}>Stock Income:</FormInput>
                 <FormInput For={"other"} Type={"text"} ID={"other"} Name={"other"} Value={formData.other} OnChange={handleEdit}>Other:</FormInput>
                 <FormInput For={"totalincome"} Type={"text"} ID={"total_income"} Name={"total_income"} Value={formData.total_income} OnChange={handleEdit}>Total Income:</FormInput>
-                <input className="button is-primary" type="submit" onClick={() => submitEdit("Income")}/>
+                <input className="button is-primary" type="submit" onClick={(event) => {event.preventDefault(); resetComponent(); submitEdit("Income")}}/>
                 </form>
         </div>
         :undefined}
-        {typeofData=="Edit Expense"?
+        {typeofData=="Edit Expense" ?      
         <div>
                 <p className="title">{typeofData}</p>
                 <form className="box custom-box">
@@ -82,7 +82,7 @@ export default function EditData ({typeofData, id}) {
                 <FormInput For={"entertainment"} Type={"text"} ID={"text"} Name={"entertainment"} Value={formData.entertainment} OnChange={handleEdit}>Entertainment:</FormInput>
                 <FormInput For={"other"} Type={"text"} ID={"text"} Name={"other"} Value={formData.other} OnChange={handleEdit}>Other:</FormInput>
                 <FormInput For={"totalexpense"} Type={"text"} ID={"total_expense"} Name={"total_expense"} Value={formData.total_expense} OnChange={handleEdit}>Total Expense:</FormInput>
-                <input className="button is-primary" type="submit" onClick={() => submitEdit("Expense")}/>
+                <input className="button is-primary" type="submit" onClick={(event) => {event.preventDefault(); resetComponent(); submitEdit("Expense")}}/>
                 </form>
           </div>
           :undefined}
