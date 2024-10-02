@@ -2,7 +2,7 @@ import {useState} from "react"
 import EditData from "../EditData";
 import DeleteData from "../DeleteData";
 
-function IncomeTable ({sendIncome, refresh}) {
+function IncomeTable ({ sendIncome, resetComponent}) {
 
   const [edit, setEdit] = useState({typeofData: "", id: 0});
 
@@ -44,7 +44,7 @@ function IncomeTable ({sendIncome, refresh}) {
       <button className="button is-warning" onClick={(event) => {event.preventDefault(); setEdit({typeofData: "Edit Income", id: items.id});}}>Edit</button>
       </td>
       <td>
-      <button className="button is-danger" type="button" onClick={() => {setDeleteItem({typeofData: "Delete Income", id: items.id});refresh();}}>Delete</button>
+      <button className="button is-danger" type="button" onClick={(event) => {event.preventDefault(); setDeleteItem({typeofData: "Delete Income", id: items.id});}}>Delete</button>            
       </td>
     </tr>
       )
@@ -56,8 +56,8 @@ function IncomeTable ({sendIncome, refresh}) {
     )}
   </tbody>
 </table>
-{(edit.typeofData === "Edit Income") ? <EditData typeofData={edit.typeofData} id={edit.id}/> : null}
-{(deleteitem.typeofData === "Delete Income") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id}/> : null}
+{(edit.typeofData === "Edit Income") ? <EditData typeofData={edit.typeofData} id={edit.id} resetComponent={resetComponent}/> : null}
+{(deleteitem.typeofData === "Delete Income") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id} resetComponent={resetComponent}/> : null}
 </>
     )
 }
