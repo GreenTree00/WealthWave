@@ -19,16 +19,20 @@ export default function DeductIncome () {
             const handleClick = async (event) => {
                 event.preventDefault()
                 try {
-                    await fetch(`${import.meta.env.VITE_API_URL}/data/expense`, {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/data/expense`, {
                       method: "POST",
                       body: JSON.stringify(formData),
                       headers: {
                           "Content-Type": "application/json",
                         }
                     });
-                    setFormData({
-                        date: "", housing: "", food: "", transportation: "", insurance: "", entertainment: "", other: "", totalexpense: ""
-                 });
+                    if (!response.ok) {
+                        alert("Please my sure to fill in all fields, and only use numbers")
+                    } else {
+                        setFormData({
+                            date: "", housing: "", food: "", transportation: "", insurance: "", entertainment: "", other: "", totalexpense: ""
+                     });
+                    }
               } catch (err) {
                   console.log("An Error has ocurred", err);
                   alert("There was a problem adding this data. Please try again later");
