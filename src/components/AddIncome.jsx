@@ -18,22 +18,24 @@ const [formData, setFormData] = useState({
     const handleClick = async (event) => {
         event.preventDefault()
         try {
-              await fetch(`${import.meta.env.VITE_API_URL}/data/income`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/data/income`, {
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {
                     "Content-Type": "application/json",
                   }
               });
-              setFormData({
-                date: "", jobincome: "", sidehustleincome: "", stockincome: "", other: "", totalincome: ""
-            });
+              if(!response.ok) {
+                alert("Please my sure to fill in all fields, and only use numbers")
+              } else {
+                setFormData({
+                    date: "", jobincome: "", sidehustleincome: "", stockincome: "", other: "", totalincome: ""
+                });
+            }
         } catch (err) {
             console.log(err);
             alert("There was an error connecting to the server. Please try again later")
-        }
-        
-        
+        } 
     }
 
     return (
