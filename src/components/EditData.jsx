@@ -1,9 +1,12 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import FormInput from "./FormInput";
+import { ResetComponent } from "./store/Reset-Component";
 
-export default function EditData ({typeofData, id, resetComponent}) {
+export default function EditData ({typeofData, id}) {
 
   const [formData, setFormData] = useState({});
+
+  const resetComponent = useContext(ResetComponent);
 
     function handleEdit (event) {
       const {name, value} = event.target;
@@ -66,7 +69,7 @@ export default function EditData ({typeofData, id, resetComponent}) {
                 <FormInput For={"stockincome"} Type={"text"} ID={"stock_income"} Name={"stock_income"} Value={formData.stock_income} OnChange={handleEdit}>Stock Income:</FormInput>
                 <FormInput For={"other"} Type={"text"} ID={"other"} Name={"other"} Value={formData.other} OnChange={handleEdit}>Other:</FormInput>
                 <FormInput For={"totalincome"} Type={"text"} ID={"total_income"} Name={"total_income"} Value={formData.total_income} OnChange={handleEdit}>Total Income:</FormInput>
-                <input className="button is-primary" type="submit" onClick={(event) => {event.preventDefault(); resetComponent(); submitEdit("Income")}}/>
+                <input className="button is-primary" type="submit" onClick={(event) => {event.preventDefault(); resetComponent; submitEdit("Income")}}/>
                 </form>
         </div>
         :undefined}
@@ -82,7 +85,7 @@ export default function EditData ({typeofData, id, resetComponent}) {
                 <FormInput For={"entertainment"} Type={"text"} ID={"text"} Name={"entertainment"} Value={formData.entertainment} OnChange={handleEdit}>Entertainment:</FormInput>
                 <FormInput For={"other"} Type={"text"} ID={"text"} Name={"other"} Value={formData.other} OnChange={handleEdit}>Other:</FormInput>
                 <FormInput For={"totalexpense"} Type={"text"} ID={"total_expense"} Name={"total_expense"} Value={formData.total_expense} OnChange={handleEdit}>Total Expense:</FormInput>
-                <input className="button is-primary" type="submit" onClick={(event) => {event.preventDefault(); resetComponent(); submitEdit("Expense")}}/>
+                <input className="button is-primary" type="submit" onClick={(event) => {event.preventDefault(); resetComponent; submitEdit("Expense")}}/>
                 </form>
           </div>
           :undefined}
