@@ -2,7 +2,7 @@ import {useState} from "react"
 import EditData from "../EditData";
 import DeleteData from "../DeleteData";
 
-function IncomeTable ({ sendIncome, resetComponent}) {
+function IncomeTable ({ sendIncome}) {
 
   const [edit, setEdit] = useState({typeofData: "", id: 0});
 
@@ -56,8 +56,8 @@ function IncomeTable ({ sendIncome, resetComponent}) {
     )}
   </tbody>
 </table>
-{(edit.typeofData === "Edit Income") ? <EditData typeofData={edit.typeofData} id={edit.id} resetComponent={resetComponent}/> : null}
-{(deleteitem.typeofData === "Delete Income") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id} resetComponent={resetComponent}/> : null}
+{(edit.typeofData === "Edit Income") ? <EditData typeofData={edit.typeofData} id={edit.id}/> : null}
+{(deleteitem.typeofData === "Delete Income") ? <DeleteData typeofData={deleteitem.typeofData} id={deleteitem.id}/> : null}
 </>
     )
 }
