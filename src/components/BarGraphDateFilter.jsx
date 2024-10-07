@@ -3,6 +3,7 @@ import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recha
 import IncomeTable from "./Tables/IncomeTable";
 import ExpenseTable from "./Tables/ExpenseTable";
 import IncomeExpenseTable from "./Tables/IncomeExpenseTable";
+import {ResetComponent} from "../components/store/Reset-Component";
 
 function BarGraphDateFilter () {
 
@@ -18,6 +19,10 @@ function BarGraphDateFilter () {
      const [tableData, setTableData] = useState([{}]);
 
      const [tableName, setTableName] = useState("");
+
+     const resetComponent = {
+        resetComponent: handleClick
+     }
 
      const handleChange = (event) => {
         const {name, value} = event.target;
@@ -97,6 +102,7 @@ function BarGraphDateFilter () {
        }
 
     return (
+        <ResetComponent.Provider value={resetComponent}>
         <div>
             <p className="title">Look Up By Specific Date</p>
         <div>
@@ -136,12 +142,13 @@ function BarGraphDateFilter () {
     </BarChart>
     </ResponsiveContainer>
     </div>
-    {tableName=="Income"? <IncomeTable sendIncome={tableData} resetComponent={handleClick} /*this is where I am sending the values from formData to be updated so that i can cause a rerender*//>:null}             
+    {tableName=="Income"? <IncomeTable sendIncome={tableData} resetComponent={handleClick}/>:null}             
     {tableName=="Expense"? <ExpenseTable sendExpense={tableData} resetComponent={handleClick}/>:null}
     {tableName=="Income-Expense"? <IncomeExpenseTable sendIncomeExpense={tableData} resetComponent={handleClick}/>:null}
     </form>
     </div>
     </div>
+    </ResetComponent.Provider>
     )
 }
 
